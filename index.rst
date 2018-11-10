@@ -10,17 +10,17 @@ Welcome to Eric Docs Index's documentation!
    :maxdepth: 2
    :caption: Contents:
    
-`Bluez <../../Bluez/_build/html/index.html>`_
+`Bluez <http://bluez-cheat-sheet.readthedocs.io/>`_
 
-`Git <../../Git/_build/html/index.html>`_
+`Git <http://git-cheat-sheet.readthedocs.io/>`_
 
-`Linux <../../Linux/_build/html/index.html>`_
+`Linux <http://linux-cheat-sheet.readthedocs.io/>`_
 
-`Notepad++ <../../Notepad++/_build/html/index.html>`_
+`Notepad++ <http://notepad-cheat-sheet.readthedocs.io/>`_
 
-`Python <../../Python/_build/html/index.html>`_
+`Python <http://python-cheat-sheet.readthedocs.io/>`_
 
-`Sphinx <../../Sphinx/_build/html/index.html>`_
+`Sphinx <http://sphinx-cheat-sheet.readthedocs.io/>`_
 
 Indices and tables
 ==================
