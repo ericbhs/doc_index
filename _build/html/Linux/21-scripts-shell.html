@@ -1,0 +1,571 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Scripts Shell &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="scripts-shell">
+<h1>Scripts Shell<a class="headerlink" href="#scripts-shell" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#remarques-generales" id="id1">Remarques générales</a></li>
+<li><a class="reference internal" href="#variables" id="id2">Variables</a></li>
+<li><a class="reference internal" href="#quotes" id="id3">Quotes</a></li>
+<li><a class="reference internal" href="#read-demander-une-saisie" id="id4"><code class="docutils literal notranslate"><span class="pre">read</span></code> : Demander une saisie</a></li>
+<li><a class="reference internal" href="#operations-mathematiques" id="id5">Opérations mathématiques</a></li>
+<li><a class="reference internal" href="#les-variables-d-environnement" id="id6">Les variables d’environnement</a></li>
+<li><a class="reference internal" href="#les-parametres" id="id7">Les paramètres</a></li>
+<li><a class="reference internal" href="#les-tableaux" id="id8">Les Tableaux</a></li>
+<li><a class="reference internal" href="#les-conditions" id="id9">Les conditions</a><ul>
+<li><a class="reference internal" href="#tests-sur-les-chaines-de-caracteres" id="id10">Tests sur les chaines de caractères</a></li>
+<li><a class="reference internal" href="#tests-sur-les-nombres" id="id11">Tests sur les nombres</a></li>
+<li><a class="reference internal" href="#tests-sur-les-fichiers" id="id12">Tests sur les fichiers</a></li>
+<li><a class="reference internal" href="#plusieurs-tests-et" id="id13">Plusieurs tests : <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> et <code class="docutils literal notranslate"><span class="pre">||</span></code></a></li>
+<li><a class="reference internal" href="#test-inverse-not" id="id14">Test inversé : <code class="docutils literal notranslate"><span class="pre">not</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#switch-case" id="id15">Switch case</a></li>
+<li><a class="reference internal" href="#les-boucles" id="id16">Les boucles</a><ul>
+<li><a class="reference internal" href="#boucle-while" id="id17">Boucle <code class="docutils literal notranslate"><span class="pre">while</span></code></a></li>
+<li><a class="reference internal" href="#boucle-until" id="id18">Boucle <code class="docutils literal notranslate"><span class="pre">until</span></code></a></li>
+<li><a class="reference internal" href="#boucle-for" id="id19">Boucle <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#les-fonctions" id="id20">Les fonctions</a></li>
+</ul>
+</div>
+<div class="section" id="remarques-generales">
+<h2><a class="toc-backref" href="#id1">Remarques générales</a><a class="headerlink" href="#remarques-generales" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">ici on utilisera bash</p>
+</li>
+<li><p class="first">Extension : <code class="docutils literal notranslate"><span class="pre">fichier.sh</span></code></p>
+</li>
+<li><p class="first">ajouter <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> au début pour s’assurer qu’il est éxécuté avec bash et pas un autre shell</p>
+</li>
+<li><p class="first">comentaires : <code class="docutils literal notranslate"><span class="pre">#</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>donner le droit “éxécutable” au script :</dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">essai.sh</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Exécuter le script :</dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">./essai.sh</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Mode debug <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">-x</span></code></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">-x</span> <span class="pre">essai.sh</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Pour éxécuter un script à n’importe quel endroit -&gt; copier le script dans un des répertoires du <code class="docutils literal notranslate"><span class="pre">PATH</span></code></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$PATH</span></code> pour voir où se trouvent les répertoires du PATH</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="variables">
+<h2><a class="toc-backref" href="#id2">Variables</a><a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><strong>Attention pas d’espaces autour des ``=``</strong></div></blockquote>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">something</span></code></dt>
+<dd>renvoie le paramètre something</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$something</span></code></dt>
+<dd>pour afficher une variable dans un script (ajouter ‘$’)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">-e</span> <span class="pre">&quot;test\ntes2\n&quot;</span></code></dt>
+<dd>tient comptre des retours à la ligne <code class="docutils literal notranslate"><span class="pre">\n</span></code></dd>
+</dl>
+</div>
+<div class="section" id="quotes">
+<h2><a class="toc-backref" href="#id3">Quotes</a><a class="headerlink" href="#quotes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Simple quotes</strong> : bash ne tient pas compte de la variable quand on utilise des simple quotes <code class="docutils literal notranslate"><span class="pre">'...'</span></code></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">message</span><span class="o">=</span><span class="s1">&#39;Bonjour tout le monde&#39;</span>
+$ <span class="nb">echo</span> <span class="s1">&#39;Le message est : $message&#39;</span>
+Le message est : <span class="nv">$message</span><span class="sb">``</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>Double quotes</strong> : bash tient compte de la variable quand on utilise des double quotes <code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">message</span><span class="o">=</span><span class="s1">&#39;Bonjour tout le monde&#39;</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;Le message est : Bonjour tout le monde&quot;</span>
+Le message est : <span class="nv">$message</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>Back quotes</strong> : bash éxécute ce qui se trouve dans les back quotes <code class="docutils literal notranslate"><span class="pre">`...`</span></code></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">message</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;Vous êtes dans le dossier </span><span class="nv">$message</span><span class="s2">&quot;</span>
+Vous êtes dans le dossier /home/mateo21/bin
+</pre></div>
+</div>
+</div>
+<div class="section" id="read-demander-une-saisie">
+<h2><a class="toc-backref" href="#id4"><code class="docutils literal notranslate"><span class="pre">read</span></code> : Demander une saisie</a><a class="headerlink" href="#read-demander-une-saisie" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> : demande un message de prompt</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">read</span> -p <span class="s1">&#39;Entrez votre nom : &#39;</span> nom prenom
+$ <span class="nb">echo</span> <span class="s2">&quot;Bonjour </span><span class="nv">$nom</span><span class="s2"> </span><span class="nv">$prenom</span><span class="s2"> !&quot;</span>
+Entrez votre nom : Mathieu
+Bonjour Deschamps Mathieu !
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-n</span></code> : nb max de caractères</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">read</span> -p <span class="s1">&#39;Entrez votre login (5 caractères max) : &#39;</span> -n <span class="m">5</span> nom
+$ <span class="nb">echo</span> <span class="s2">&quot;Bonjour </span><span class="nv">$nom</span><span class="s2"> !&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-t</span></code> : précise un temps max</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">read</span> -p <span class="s1">&#39;Entrez le code de désamorçage de la bombe (vous avez 5 secondes) : &#39;</span>  -t <span class="m">5</span> code
+$ <span class="nb">echo</span> -e <span class="s2">&quot;\nBoum !&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-s</span></code> : ne pas afficher les caractères saisis</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">read</span> -p <span class="s1">&#39;Entrez votre mot de passe : &#39;</span> -s pass
+$ <span class="nb">echo</span> -e <span class="s2">&quot;\nMerci ! Je vais dire à tout le monde que votre mot de passe est </span><span class="nv">$pass</span><span class="s2"> ! :)&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="operations-mathematiques">
+<h2><a class="toc-backref" href="#id5">Opérations mathématiques</a><a class="headerlink" href="#operations-mathematiques" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">let</span> <span class="s2">&quot;a = 5&quot;</span>
+$ <span class="nb">let</span> <span class="s2">&quot;b = 2&quot;</span>
+$ <span class="nb">let</span> <span class="s2">&quot;c = a + b&quot;</span>
+<span class="m">7</span>
+</pre></div>
+</div>
+<p>Remarque : on peut utiliser : <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">&quot;a</span> <span class="pre">+=</span> <span class="pre">5&quot;</span></code></p>
+<p><strong>Opérations utilisables :</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>l’addition : <code class="docutils literal notranslate"><span class="pre">+</span></code></li>
+<li>la soustraction : <code class="docutils literal notranslate"><span class="pre">-</span></code></li>
+<li>la multiplication : <code class="docutils literal notranslate"><span class="pre">*</span></code></li>
+<li>la division : <code class="docutils literal notranslate"><span class="pre">/</span></code></li>
+<li>la puissance : <code class="docutils literal notranslate"><span class="pre">**</span></code></li>
+<li>le modulo (renvoie le reste de la division entière) : <code class="docutils literal notranslate"><span class="pre">%</span></code></li>
+</ul>
+</div></blockquote>
+<p><strong>Opérations sur des nombres décimaux</strong> : cf commande <code class="docutils literal notranslate"><span class="pre">bc</span></code></p>
+</div>
+<div class="section" id="les-variables-d-environnement">
+<h2><a class="toc-backref" href="#id6">Les variables d’environnement</a><a class="headerlink" href="#les-variables-d-environnement" title="Permalink to this headline">¶</a></h2>
+<p>Elles sont disponibles tout le temps pour tous les scripts (variables globales) On les met en majuscules par convention.</p>
+<p>Exemples :</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">SHELL</span></code> : indique quel type de shell est en cours d’utilisation (sh, bash, ksh…) ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">PATH</span></code> : une liste des répertoires qui contiennent des exécutables que vous souhaitez pouvoir lancer sans indiquer leur répertoire. Nous en avons parlé un peu plus tôt. Si un programme se trouve dans un de ces dossiers, vous pourrez l’invoquer quel que soit le dossier dans lequel vous vous trouvez ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">EDITOR</span></code> : l’éditeur de texte par défaut qui s’ouvre lorsque cela est nécessaire ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">HOME</span></code> : la position de votre dossier home ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">PWD</span></code> : le dossier dans lequel vous vous trouvez ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">OLDPWD</span></code> : le dossier dans lequel vous vous trouviez auparavant.</li>
+</ul>
+</div></blockquote>
+<p>Pour en créer de nouvelles : <code class="docutils literal notranslate"><span class="pre">export</span></code></p>
+</div>
+<div class="section" id="les-parametres">
+<h2><a class="toc-backref" href="#id7">Les paramètres</a><a class="headerlink" href="#les-parametres" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">./script.sh</span> <span class="pre">param1</span> <span class="pre">param2</span> <span class="pre">param3</span></code></p>
+<dl class="docutils">
+<dt>Pour récupérer ces paramètres dans le script :</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">$#</span></code> : contient le nombre de paramètres</li>
+<li><code class="docutils literal notranslate"><span class="pre">$0</span></code> : contient le nom du script exécuté (ici ./variables.sh)</li>
+<li><code class="docutils literal notranslate"><span class="pre">$1</span></code> : contient le premier paramètre</li>
+<li><code class="docutils literal notranslate"><span class="pre">$2</span></code> : contient le second paramètre</li>
+<li>…</li>
+<li><code class="docutils literal notranslate"><span class="pre">$9</span></code> : contient le 9e paramètre</li>
+</ul>
+</dd>
+</dl>
+<p>Si on a plus de 9 variables : décaler l’ordre avec la commande <code class="docutils literal notranslate"><span class="pre">shift</span></code> . Exemple :</p>
+<blockquote>
+<div><p>Script :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;Le paramètre 1 est </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="nb">shift</span>
+<span class="nb">echo</span> <span class="s2">&quot;Le paramètre 1 est maintenant </span><span class="nv">$1</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>A l’exécution</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./variables.sh param1 param2 param3
+Le paramètre <span class="m">1</span> est param1
+Le paramètre <span class="m">1</span> est maintenant param2
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="les-tableaux">
+<h2><a class="toc-backref" href="#id8">Les Tableaux</a><a class="headerlink" href="#les-tableaux" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Définir un tableau :</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">tableau=('valeur0'</span> <span class="pre">'valeur1'</span> <span class="pre">'valeur2')</span></code></dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Accéder à une case particulière :</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">${tableau[2]}</span></code></dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Définir le contenu d’une case :</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">tableau[2]='valeur2'</span></code></dd>
+</dl>
+</li>
+<li>On peut sauter des cases :</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">tableau</span><span class="o">=(</span><span class="s1">&#39;valeur0&#39;</span> <span class="s1">&#39;valeur1&#39;</span> <span class="s1">&#39;valeur2&#39;</span><span class="o">)</span>
+tableau<span class="o">[</span><span class="m">5</span><span class="o">]=</span><span class="s1">&#39;valeur5&#39;</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">tableau</span><span class="p">[1]</span><span class="si">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Afficher l’ensemble d’une tableau :</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">${tableau[*]}</span></code></dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="les-conditions">
+<h2><a class="toc-backref" href="#id9">Les conditions</a><a class="headerlink" href="#les-conditions" title="Permalink to this headline">¶</a></h2>
+<p>Synthaxe :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[</span> <span class="nv">$1</span> <span class="o">=</span> <span class="s2">&quot;Bruno&quot;</span> <span class="o">]</span>     <span class="c1"># ou if [ $1 = Bruno&quot; ]; then</span>
+<span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Salut Bruno !&quot;</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="nv">$1</span> <span class="o">=</span> <span class="s2">&quot;Michel&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Bien le bonjour Michel&quot;</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="nv">$1</span> <span class="o">=</span> <span class="s2">&quot;Jean&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Hé Jean, ça va ?&quot;</span>
+<span class="k">else</span>
+        <span class="nb">echo</span> <span class="s2">&quot;J&#39;te connais pas, ouste !&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+<div class="section" id="tests-sur-les-chaines-de-caracteres">
+<h3><a class="toc-backref" href="#id10">Tests sur les chaines de caractères</a><a class="headerlink" href="#tests-sur-les-chaines-de-caracteres" title="Permalink to this headline">¶</a></h3>
+<p>Rappel : toutes les variables sont traitées comme des strings</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">$chaine1</span> <span class="pre">=</span> <span class="pre">$chaine2</span></code></dt>
+<dd><p class="first">Vérifie si les deux chaînes sont identiques. Notez que bash est sensible à la casse : « b » est donc différent de « B ».</p>
+<p class="last">Il est aussi possible d’écrire <code class="docutils literal notranslate"><span class="pre">==</span></code> pour les habitués du langage C.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">$chaine1</span> <span class="pre">!=</span> <span class="pre">$chaine2</span></code></dt>
+<dd>Vérifie si les deux chaînes sont différentes.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-z</span> <span class="pre">$chaine</span></code></dt>
+<dd>Vérifie si la chaîne est vide.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">$chaine</span></code></dt>
+<dd>Vérifie si la chaîne est non vide.</dd>
+</dl>
+</div>
+<div class="section" id="tests-sur-les-nombres">
+<h3><a class="toc-backref" href="#id11">Tests sur les nombres</a><a class="headerlink" href="#tests-sur-les-nombres" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">$num1</span> <span class="pre">-eq</span> <span class="pre">$num2</span></code></dt>
+<dd>Vérifie si les nombres sont égaux (equal). À ne pas confondre avec le « = » qui, lui, compare deux chaînes de caractères.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">$num1</span> <span class="pre">-ne</span> <span class="pre">$num2</span></code></dt>
+<dd>Vérifie si les nombres sont différents (nonequal).</dd>
+</dl>
+<p><strong>Encore une fois, ne confondez pas avec ``!=`` qui est censé être utilisé sur des chaînes de caractères.</strong></p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">$num1</span> <span class="pre">-lt</span> <span class="pre">$num2</span></code></dt>
+<dd>Vérifie si num1 est inférieur ( &lt; ) à num2 (lowerthan).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">$num1</span> <span class="pre">-le</span> <span class="pre">$num2</span></code></dt>
+<dd>Vérifie si num1 est inférieur ou égal ( &lt;= ) à num2 (lowerorequal).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">$num1</span> <span class="pre">-gt</span> <span class="pre">$num2</span></code></dt>
+<dd>Vérifie si num1 est supérieur ( &gt; ) à num2 (greaterthan).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">$num1</span> <span class="pre">-ge</span> <span class="pre">$num2</span></code></dt>
+<dd>Vérifie si num1 est supérieur ou égal ( &gt;= ) à num2 (greaterorequal).</dd>
+</dl>
+</div>
+<div class="section" id="tests-sur-les-fichiers">
+<h3><a class="toc-backref" href="#id12">Tests sur les fichiers</a><a class="headerlink" href="#tests-sur-les-fichiers" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">$nomfichier</span></code></dt>
+<dd>Vérifie si le fichier existe.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">$nomfichier</span></code></dt>
+<dd>Vérifie si le fichier est un répertoire. N’oubliez pas que sous Linux, tout est considéré comme un fichier, même un répertoire !</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">$nomfichier</span></code></dt>
+<dd>Vérifie si le fichier est un… fichier. Un vrai fichier cette fois, pas un dossier.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-L</span> <span class="pre">$nomfichier</span></code></dt>
+<dd>Vérifie si le fichier est un lien symbolique (raccourci).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">$nomfichier</span></code></dt>
+<dd>Vérifie si le fichier est lisible (r).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">$nomfichier</span></code></dt>
+<dd>Vérifie si le fichier est modifiable (w).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-x</span> <span class="pre">$nomfichier</span></code></dt>
+<dd>Vérifie si le fichier est exécutable (x).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">$fichier1</span> <span class="pre">-nt</span> <span class="pre">$fichier2</span></code></dt>
+<dd>Vérifie si fichier1 est plus récent que fichier2 (newerthan).</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">$fichier1</span> <span class="pre">-ot</span> <span class="pre">$fichier2</span></code></dt>
+<dd>Vérifie si fichier1 est plus vieux que fichier2 (olderthan).</dd>
+</dl>
+</div>
+<div class="section" id="plusieurs-tests-et">
+<h3><a class="toc-backref" href="#id13">Plusieurs tests : <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> et <code class="docutils literal notranslate"><span class="pre">||</span></code></a><a class="headerlink" href="#plusieurs-tests-et" title="Permalink to this headline">¶</a></h3>
+<p>Exemple :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -ge <span class="m">1</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nv">$1</span> <span class="o">=</span> <span class="s1">&#39;koala&#39;</span> <span class="o">]</span>
+<span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Bravo !&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Vous connaissez le mot de passe&quot;</span>
+<span class="k">else</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Vous n&#39;avez pas le bon mot de passe&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-inverse-not">
+<h3><a class="toc-backref" href="#id14">Test inversé : <code class="docutils literal notranslate"><span class="pre">not</span></code></a><a class="headerlink" href="#test-inverse-not" title="Permalink to this headline">¶</a></h3>
+<p>Exemple :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[</span> ! -e fichier <span class="o">]</span>
+<span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Le fichier n&#39;existe pas&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="switch-case">
+<h2><a class="toc-backref" href="#id15">Switch case</a><a class="headerlink" href="#switch-case" title="Permalink to this headline">¶</a></h2>
+<p>Exemple :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="nv">$1</span> in
+        <span class="s2">&quot;Bruno&quot;</span><span class="o">)</span>
+                <span class="nb">echo</span> <span class="s2">&quot;Salut Bruno !&quot;</span>
+                <span class="nb">echo</span> <span class="s2">&quot;tu vas bien ?&quot;</span>
+                <span class="p">;;</span>
+        <span class="s2">&quot;Michel&quot;</span><span class="o">)</span>
+                <span class="nb">echo</span> <span class="s2">&quot;Bien le bonjour Michel&quot;</span>
+                <span class="p">;;</span>
+        <span class="s2">&quot;Jean&quot;</span><span class="o">)</span>
+                <span class="nb">echo</span> <span class="s2">&quot;Hé Jean, ça va ?&quot;</span>
+                <span class="p">;;</span>
+        *<span class="o">)</span>
+                <span class="nb">echo</span> <span class="s2">&quot;J&#39;te connais pas, ouste !&quot;</span>
+                <span class="p">;;</span>
+<span class="k">esac</span>
+</pre></div>
+</div>
+<p>Exemple 2 : avec des ou (attention : <code class="docutils literal notranslate"><span class="pre">|</span></code> et pas <code class="docutils literal notranslate"><span class="pre">||</span></code>)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="nv">$1</span> in
+        <span class="s2">&quot;Chien&quot;</span> <span class="p">|</span> <span class="s2">&quot;Chat&quot;</span> <span class="p">|</span> <span class="s2">&quot;Souris&quot;</span><span class="o">)</span>
+                <span class="nb">echo</span> <span class="s2">&quot;C&#39;est un mammifère&quot;</span>
+                <span class="p">;;</span>
+        <span class="s2">&quot;Moineau&quot;</span> <span class="p">|</span> <span class="s2">&quot;Pigeon&quot;</span><span class="o">)</span>
+                <span class="nb">echo</span> <span class="s2">&quot;C&#39;est un oiseau&quot;</span>
+                <span class="p">;;</span>
+        *<span class="o">)</span>
+                <span class="nb">echo</span> <span class="s2">&quot;Je ne sais pas ce que c&#39;est&quot;</span>
+                <span class="p">;;</span>
+<span class="k">esac</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="les-boucles">
+<h2><a class="toc-backref" href="#id16">Les boucles</a><a class="headerlink" href="#les-boucles" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="boucle-while">
+<h3><a class="toc-backref" href="#id17">Boucle <code class="docutils literal notranslate"><span class="pre">while</span></code></a><a class="headerlink" href="#boucle-while" title="Permalink to this headline">¶</a></h3>
+<p>Exemple :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># La réponse est vide ? Différente de &quot;oui&quot; ?</span>
+<span class="k">while</span> <span class="o">[</span> -z <span class="nv">$reponse</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="nv">$reponse</span> !<span class="o">=</span> <span class="s1">&#39;oui&#39;</span> <span class="o">]</span>
+<span class="k">do</span>
+        <span class="nb">read</span> -p <span class="s1">&#39;Dites oui : &#39;</span> reponse
+<span class="k">done</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="boucle-until">
+<h3><a class="toc-backref" href="#id18">Boucle <code class="docutils literal notranslate"><span class="pre">until</span></code></a><a class="headerlink" href="#boucle-until" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">while</span></code> s’exécute tant que la condition est vraie, <code class="docutils literal notranslate"><span class="pre">until</span></code> jusqu’à ce qu’elle le soit</p>
+<p>Exemple :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Boucle jusqu&#39;à ce que la réponse soit non vide et qu&#39;elle soit &quot;oui&quot;</span>
+<span class="k">until</span> <span class="o">[</span> -n <span class="nv">$reponse</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nv">$reponse</span> <span class="o">==</span> <span class="s1">&#39;oui&#39;</span> <span class="o">]</span>
+<span class="k">do</span>
+        <span class="nb">read</span> -p <span class="s1">&#39;Dites oui : &#39;</span> reponse
+<span class="k">done</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="boucle-for">
+<h3><a class="toc-backref" href="#id19">Boucle <code class="docutils literal notranslate"><span class="pre">for</span></code></a><a class="headerlink" href="#boucle-for" title="Permalink to this headline">¶</a></h3>
+<p>Exemple :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> variable in <span class="s1">&#39;valeur1&#39;</span> <span class="s1">&#39;valeur2&#39;</span> <span class="s1">&#39;valeur3&#39;</span>
+ <span class="k">do</span>
+         <span class="nb">echo</span> <span class="s2">&quot;La variable vaut </span><span class="nv">$variable</span><span class="s2">&quot;</span>
+ <span class="k">done</span>
+</pre></div>
+</div>
+<p>Exemple 2 :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">liste_fichiers</span><span class="o">=</span><span class="sb">`</span>ls<span class="sb">`</span>
+
+<span class="k">for</span> fichier in <span class="nv">$liste_fichiers</span>
+<span class="k">do</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Fichier trouvé : </span><span class="nv">$fichier</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>Exemple 3 :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">liste_fichiers</span><span class="o">=</span><span class="sb">`</span>ls<span class="sb">`</span>
+
+<span class="k">for</span> fichier in <span class="nv">$liste_fichiers</span>
+<span class="k">do</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Fichier trouvé : </span><span class="nv">$fichier</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>Exemple 4 : renommer chacun des fichiers du répertoire actuel en leur ajoutant un suffixe -old par exemple</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> fichier in <span class="sb">`</span>ls<span class="sb">`</span>
+<span class="k">do</span>
+        mv <span class="nv">$fichier</span> <span class="nv">$fichier</span>-old
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>Exemple 5 : pour simuler une boucle for plus classique (seq génère tous les nombres allant du premier paramètre au dernier paramètre)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">1</span> <span class="m">10</span><span class="sb">`</span><span class="p">;</span>
+<span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>Remarque : pour aller de 2 en 2 : <code class="docutils literal notranslate"><span class="pre">seq</span> <span class="pre">1</span> <span class="pre">2</span> <span class="pre">10</span></code></p>
+</div>
+</div>
+<div class="section" id="les-fonctions">
+<h2><a class="toc-backref" href="#id20">Les fonctions</a><a class="headerlink" href="#les-fonctions" title="Permalink to this headline">¶</a></h2>
+<p>Déclarer une fonction : 2 possibilités</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>maFonction <span class="o">()</span>
+<span class="o">{</span>
+        bloc d’instructions
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>ou :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> maFonction
+<span class="o">{</span>
+        bloc d’instructions
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Appeler une fonction :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>maFonction      <span class="c1"># tout simplement ;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Linux/21-scripts-shell.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

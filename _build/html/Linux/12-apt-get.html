@@ -1,0 +1,132 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Installer des programmes avec apt-get &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="installer-des-programmes-avec-apt-get">
+<h1>Installer des programmes avec apt-get<a class="headerlink" href="#installer-des-programmes-avec-apt-get" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">/etc/apt/sources.list</span></code> :</p>
+<blockquote>
+<div><ul class="simple">
+<li>adresses des serveurs pour les dépôts</li>
+<li>pour autoriser le téléchargement de sources</li>
+</ul>
+</div></blockquote>
+<p>ex :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>deb-src http://raspbian.raspberrypi.org/raspbian/ stretch main contrib non-free rpi
+                                                  ^ OS version
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">update</span></code> (optionnel)</dt>
+<dd>pour mettre notre cache à jour si ce n’est pas déjà fait</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apt-cache</span> <span class="pre">search</span> <span class="pre">monpaquet</span></code> (optionnel)</dt>
+<dd>pour rechercher le paquet que nous voulons télécharger si nous ne connaissons pas son nom exact</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">monpaquet</span></code></dt>
+<dd>pour télécharger et installer notre paquet</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apt-cache</span> <span class="pre">show</span> <span class="pre">nomdupaquet</span></code></dt>
+<dd>pour une plus ample description d’un paquet</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">remove</span> <span class="pre">nomdupaquet</span></code></dt>
+<dd>désinstaller un paquet. Toutefois, cela ne supprime pas les dépendances du paquet devenues inutiles</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">autoremove</span> <span class="pre">nomdupaquet</span></code></dt>
+<dd>Pour demander à <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> de supprimer aussi les dépendances inutiles, on utilise <code class="docutils literal notranslate"><span class="pre">autoremove</span></code></dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code></dt>
+<dd>met à jour tous les paquets du système d’un seul couper (faire un <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">update</span></code> avant)</dd>
+</dl>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Linux/12-apt-get.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

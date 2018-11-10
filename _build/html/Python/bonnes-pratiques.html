@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>De bonnes pratiques &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="de-bonnes-pratiques">
+<h1>De bonnes pratiques<a class="headerlink" href="#de-bonnes-pratiques" title="Permalink to this headline">¶</a></h1>
+<p>PEP = Python Enhancement Proposal</p>
+<a class="reference external image-reference" href="_static/naming_recommend.png"><img alt="../_images/naming_recommend.png" src="../_images/naming_recommend.png" /></a>
+<div class="section" id="conventions-de-nommage">
+<h2>Conventions de nommage<a class="headerlink" href="#conventions-de-nommage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="noms-a-eviter">
+<h3>Noms à éviter<a class="headerlink" href="#noms-a-eviter" title="Permalink to this headline">¶</a></h3>
+<p>N’utilisez jamais les caractères suivants de manière isolée comme noms de variables :</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">l</span></code> (<code class="docutils literal notranslate"><span class="pre">L</span></code> minuscule)</li>
+<li><code class="docutils literal notranslate"><span class="pre">O</span></code> (<code class="docutils literal notranslate"><span class="pre">o</span></code> majuscule)</li>
+<li><code class="docutils literal notranslate"><span class="pre">I</span></code> (<code class="docutils literal notranslate"><span class="pre">i</span></code> majuscule).</li>
+</ul>
+<p>L’affichage de ces caractères dans certaines polices fait qu’ils peuvent être aisément confondus avec les chiffres <code class="docutils literal notranslate"><span class="pre">0</span></code> ou <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</div>
+<div class="section" id="noms-des-modules-et-packages">
+<h3>Noms des modules et packages<a class="headerlink" href="#noms-des-modules-et-packages" title="Permalink to this headline">¶</a></h3>
+<p>Package : <code class="docutils literal notranslate"><span class="pre">package</span></code></p>
+<p>Module : <code class="docutils literal notranslate"><span class="pre">nom_du_module</span></code></p>
+<ul class="simple">
+<li>noms courts</li>
+<li>constitués de lettres minuscules.</li>
+<li>noms de modules peuvent contenir des signes_(souligné)</li>
+<li>Bien que les noms de packages puissent également en contenir, la PEP 8 nous le déconseille.</li>
+</ul>
+</div>
+<div class="section" id="noms-de-classes">
+<h3>Noms de classes<a class="headerlink" href="#noms-de-classes" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">MaClasse</span></code></p>
+<p>Sans presque aucune exception, les noms de classes utilisent la convention suivante : la variable est écrite en minuscules, exceptée la première lettre de chaque mot qui la constitue.</p>
+</div>
+<div class="section" id="noms-d-exceptions">
+<h3>Noms d’exceptions<a class="headerlink" href="#noms-d-exceptions" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">CustomError</span></code></p>
+<p>Les exceptions étant des classes, elles suivent la même convention. En anglais, si l’exception est une erreur, on fait suivre le nom du suffixe <code class="docutils literal notranslate"><span class="pre">Error</span></code> (vous retrouvez cette convention dans <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>, <code class="docutils literal notranslate"><span class="pre">IndexError</span></code>…).</p>
+</div>
+<div class="section" id="noms-de-variables-fonctions-et-methodes">
+<h3>Noms de variables, fonctions et méthodes<a class="headerlink" href="#noms-de-variables-fonctions-et-methodes" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">nom_de_fonction</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">nom_de_variable</span></code></p>
+<p>La même convention est utilisée pour les noms de variables (instances d’objets), de fonctions ou de méthodes : le nom est entièrement écrit en minuscules et les mots sont séparés par des signes soulignés (<code class="docutils literal notranslate"><span class="pre">_</span></code>).</p>
+</div>
+<div class="section" id="methodes-non-publiques-et-variables-d-instance">
+<h3>Méthodes non publiques et variables d’instance<a class="headerlink" href="#methodes-non-publiques-et-variables-d-instance" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">_non_public_method</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">_instance_variable</span></code></p>
+</div>
+<div class="section" id="constantes">
+<h3>Constantes<a class="headerlink" href="#constantes" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">NOM_DE_MA_CONSTANTE</span></code></p>
+<p>Les constantes doivent être écrites entièrement en majuscules, les mots étant séparés par un signe souligné (<code class="docutils literal notranslate"><span class="pre">_</span></code>).</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Python/bonnes-pratiques.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,147 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Surveiller l’activité du système &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="surveiller-l-activite-du-systeme">
+<h1>Surveiller l’activité du système<a class="headerlink" href="#surveiller-l-activite-du-systeme" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">w</span></code></dt>
+<dd><p class="first">permet de voir qui fait quoi</p>
+<blockquote class="last">
+<div><p><code class="docutils literal notranslate"><span class="pre">USER</span></code> : le nom de l’utilisateur (son login) ;</p>
+<p><code class="docutils literal notranslate"><span class="pre">TTY</span></code> : le nom de la console dans laquelle se trouve l’utilisateur. Souvenez-vous que sous Linux il y a en général six consoles (tty1 à tty6) et qu’en plus de ça, on peut en ouvrir une infinité grâce aux consoles graphiques (leur nom commence par pts, en général), comme le propose le programme « Terminal » sous Unity ou « Konsole » sous KDE ;</p>
+<p><code class="docutils literal notranslate"><span class="pre">FROM</span></code> : c’est l’adresse IP (ou le nom d’hôte) depuis laquelle il se connecte. Ici, comme je me suis connecté en local (sur ma propre machine, sans passer par Internet), il n’y a pas vraiment d’IP ;</p>
+<p><code class="docutils literal notranslate"><span class="pre">LOGIN&#64;</span></code> : l’heure à laquelle cet utilisateur s’est connecté ;</p>
+<p><code class="docutils literal notranslate"><span class="pre">IDLE</span></code> : depuis combien de temps cet utilisateur est inactif (depuis combien de temps il n’a pas lancé de commande)</p>
+<p><code class="docutils literal notranslate"><span class="pre">WHAT</span></code> : la commande qu’il est en train d’exécuter en ce moment. En général, si vous voyez bash, cela signifie que l’invite de commandes est ouverte et qu’aucune commande particulière n’est exécutée.</p>
+</div></blockquote>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">ps</span></code> : liste statique des processus</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-ef</span></code></dt>
+<dd>lister tous les processus (~ps -A)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-ejH</span></code></dt>
+<dd>afficher les processus en arbre</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-u</span> <span class="pre">UTILISATEUR</span></code></dt>
+<dd>lister les processus lancés par un utilisateur</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">top</span></code></dt>
+<dd><p class="first">liste dynamique des processus</p>
+<blockquote class="last">
+<div><p><code class="docutils literal notranslate"><span class="pre">q</span></code> : ferme top ;</p>
+<p><code class="docutils literal notranslate"><span class="pre">h</span></code> : affiche l’aide, et donc la liste des touches utilisables.</p>
+<p><code class="docutils literal notranslate"><span class="pre">B</span></code> : met en gras certains éléments.</p>
+<p><code class="docutils literal notranslate"><span class="pre">f</span></code> : ajoute ou supprime des colonnes dans la liste.</p>
+<p><code class="docutils literal notranslate"><span class="pre">F</span></code> : change la colonne selon laquelle les processus sont triés. En général, laisser le tri par défaut en fonction de %CPU est suffisant.</p>
+<p><code class="docutils literal notranslate"><span class="pre">u</span></code> : filtre en fonction de l’utilisateur que vous voulez.</p>
+<p><code class="docutils literal notranslate"><span class="pre">k</span></code> : tue un processus, c’est-à-dire arrête ce processus. Ne vous inquiétez pas, en général les processus ne souffrent pas. On vous demandera le numéro (PID) du processus que vous voulez tuer. Nous reviendrons sur l’arrêt des processus un peu plus loin.</p>
+<p><code class="docutils literal notranslate"><span class="pre">s</span></code> : change l’intervalle de temps entre chaque rafraîchissement de la liste (par défaut, c’est toutes les trois secondes).</p>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">processPid</span></code></dt>
+<dd>tue le processus dont le PID est processPid (proprement)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">-9</span> <span class="pre">processPid</span></code></dt>
+<dd>force l’arrêt immédiat du processus processPid (bourrin)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">killall</span> <span class="pre">processName</span></code></dt>
+<dd>tue plusieurs processus dont le com est processName</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">halt/reboot</span></code></dt>
+<dd>arrête/reboot le PC</dd>
+</dl>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Linux/05-activite.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

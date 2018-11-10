@@ -1,0 +1,193 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to Sphinx Cheat Sheet &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-sphinx-cheat-sheet">
+<h1>Welcome to Sphinx Cheat Sheet<a class="headerlink" href="#welcome-to-sphinx-cheat-sheet" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="add-code-extract">
+<h1>Add code extract :<a class="headerlink" href="#add-code-extract" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. code-block:: &lt;language&gt;
+
+    Code must be one indent more that the code-block tag, and
+    separated by a blank line.
+
+    This very text is an example. Replace &lt;language&gt; by &quot;none&quot;
+    to avoid color highlighting.
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-in-line-code-extract">
+<span id="my-reference-label"></span><h1>Add in-line code extract<a class="headerlink" href="#add-in-line-code-extract" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>``this will show as an in-line code extract``
+This won&#39;t.
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="add-a-local-content-table-of-content">
+<h1>Add a local content table of content<a class="headerlink" href="#add-a-local-content-table-of-content" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. contents:: :local:
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-an-image">
+<h1>Add an image<a class="headerlink" href="#add-an-image" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. image:: image.png
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-an-image-with-link-to-see-it-full-size">
+<h1>Add an image with link to see it full size<a class="headerlink" href="#add-an-image-with-link-to-see-it-full-size" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. image:: _static/image.png
+    :target: _static/image.png
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-a-simple-table">
+<h1>Add a simple table<a class="headerlink" href="#add-a-simple-table" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>=========================== ===========================
+Test title 1                Test Title 2
+=========================== ===========================
+Row 1 Col 1                 Row 1 Col 2
+Row 2 Col 1                 Row 2 Col 2
+Row 3 Col 1                 Row 3 Col 2
+=========================== ===========================
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-a-numbered-list">
+<h1>Add a numbered list<a class="headerlink" href="#add-a-numbered-list" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#. Something
+#. Something else
+#. Another thing
+#. etc...
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-a-bullet-list">
+<h1>Add a bullet list<a class="headerlink" href="#add-a-bullet-list" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* Something
+* Something else
+* Another thing
+* etc...
+</pre></div>
+</div>
+</div>
+<div class="section" id="external-link">
+<h1>External link<a class="headerlink" href="#external-link" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`Link text &lt;link URL&gt;`_
+</pre></div>
+</div>
+<p>example : <a class="reference external" href="http://cnn.com">CNN</a></p>
+</div>
+<div class="section" id="cross-referencing-arbitrary-locations-inside-the-document">
+<h1>Cross-referencing arbitrary locations inside the document<a class="headerlink" href="#cross-referencing-arbitrary-locations-inside-the-document" title="Permalink to this headline">¶</a></h1>
+<p>Place the following code on top of the target :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. _my-reference-label:
+</pre></div>
+</div>
+<p>The use <code class="docutils literal notranslate"><span class="pre">:ref:</span></code> like this :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>...bla bla bla, see :ref:`my-reference-label`.
+</pre></div>
+</div>
+<p>Example : …bla bla bla, see <a class="reference internal" href="#my-reference-label"><span class="std std-ref">Add in-line code extract</span></a>.</p>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Sphinx/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

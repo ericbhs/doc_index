@@ -1,0 +1,142 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Exécuter des programmes en arrière-plan &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="executer-des-programmes-en-arriere-plan">
+<h1>Exécuter des programmes en arrière-plan<a class="headerlink" href="#executer-des-programmes-en-arriere-plan" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">cmd</span> <span class="pre">&amp;</span></code></dt>
+<dd>démarre la commande cmd en arrière plan</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cmd</span> <span class="pre">&gt;</span> <span class="pre">/dev/null</span> <span class="pre">2&gt;&amp;1</span> <span class="pre">&amp;</span></code></dt>
+<dd>démarre le programme en arrière plan sans récupérer sa sortie ni ses erreurs, qui sont “jetées” dans /dev/null</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">nohup</span> <span class="pre">cmd</span></code></dt>
+<dd>détacher le processus de la console (ave les autres méthodes le programme se ferme quand on ferme la console, là pas)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">z</span></code></dt>
+<dd>mettre en pause l’exécution du programme</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bg</span></code></dt>
+<dd>fait passer en arrière plan le processus que l’on a stoppé avec Ctrl+z</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jobs</span></code></dt>
+<dd>affiche les processus en arrière plan</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fg</span></code></dt>
+<dd>reprendre un processus au premier plan (foreground)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fg</span> <span class="pre">%2</span></code></dt>
+<dd>reprendre le processus n°2 (trouvé avec la commande jobs) en premier plan</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">screen</span></code></dt>
+<dd><p class="first">permet d’avoir plusieurs consoles en une (installer : sudo apt-get install screen)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">c</span></code> : créer une nouvelle « fenêtre ».</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">w</span></code> : afficher la liste des « fenêtres » actuellement ouvertes. En bas de l’écran vous verrez par exemple apparaître : 0-$ bash  1*$ bash. Cela signifie que vous avez deux fenêtres ouvertes, l’une numérotée 0, l’autre 1. Celle sur laquelle vous vous trouvez actuellement contient une étoile * (on se trouve donc ici dans la fenêtre n° 1).</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">A</span></code> : renommer la fenêtre actuelle. Ce nom apparaît lorsque vous affichez la liste des fenêtres avec Ctrl + a puis w.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">n</span></code> : passer à la fenêtre suivante (next).</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">p</span></code> : passer à la fenêtre précédente (previous).</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span></code> : revenir à la dernière fenêtre utilisée.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">un</span> <span class="pre">chiffre</span> <span class="pre">de</span> <span class="pre">0</span> <span class="pre">à</span> <span class="pre">9</span></code> : passer à la fenêtre n° X.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">&quot;</span></code> : choisir la fenêtre dans laquelle on veut aller.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">k</span></code> : fermer la fenêtre actuelle (kill).</p>
+<blockquote class="last">
+<div><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">S</span></code> : découper screen en plusieurs parties (split)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">puis</span> <span class="pre">d</span></code> : détache screen et vous permet de retrouver l’invite de commandes « normale » sans arrêter screen. C’est peut-être une des fonctionnalités les plus utiles que nous devons approfondir, et cela nous ramène d’ailleurs à l’exécution de programmes en arrière-plan dont nous avons parlé au début du chapitre.</p>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">screen</span> <span class="pre">-r</span></code></dt>
+<dd>récupérer son ancienne session screen (détachée)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">screen</span> <span class="pre">-ls</span></code></dt>
+<dd>affiche la liste des screens actuellement ouverts</dd>
+</dl>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Linux/06-arriere_plan.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,128 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Rechercher des fichiers &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="rechercher-des-fichiers">
+<h1>Rechercher des fichiers<a class="headerlink" href="#rechercher-des-fichiers" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">locate</span> <span class="pre">fichier</span></code></dt>
+<dd>recherche les fichiers/dossiers qui contiennent “fichier” et qui sont dans la base de données (db)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">updatedb</span></code></dt>
+<dd>mettre à jour la base de données</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">fichier</span></code></dt>
+<dd>recherche des fichiers en scannant le disque dur (pas la db base)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">-name</span> <span class="pre">&quot;file.txt&quot;</span></code></dt>
+<dd>dans le dossier courant</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">/var/log/</span> <span class="pre">-name</span> <span class="pre">&quot;syslog&quot;</span></code></dt>
+<dd>dans un dossier différent du courant</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">-size</span> <span class="pre">+10M</span></code></dt>
+<dd>chercher les fichiers qui font plus de 10Mo</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">-name</span> <span class="pre">&quot;*.odt&quot;</span> <span class="pre">-atime</span> <span class="pre">-6</span></code></dt>
+<dd>chercher les fichiers .odt auxquels on a accédé depuis 7 jours (numérotation comence à 0)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">-type</span> <span class="pre">d</span></code></dt>
+<dd>only directories</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">-type</span> <span class="pre">f</span></code></dt>
+<dd>only files</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">-name</span> <span class="pre">&quot;*.jpg&quot;</span> <span class="pre">-delete</span></code></dt>
+<dd>supprime tous les fichiers .jpg (dangereux !!!)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">-name</span> <span class="pre">&quot;.jpg&quot;</span> <span class="pre">-exec</span> <span class="pre">cmd</span> <span class="pre">{}</span> <span class="pre">\;</span></code></dt>
+<dd>exécute la commande cmd avec les résultats. La commande doit finir par un <code class="docutils literal notranslate"><span class="pre">\;</span></code> obligatoirement</dd>
+</dl>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Linux/14-rechercher.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

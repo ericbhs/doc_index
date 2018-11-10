@@ -1,0 +1,194 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Analyser le réseau et filtrer le trafic avec un pare-feu &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="analyser-le-reseau-et-filtrer-le-trafic-avec-un-pare-feu">
+<h1>Analyser le réseau et filtrer le trafic avec un pare-feu<a class="headerlink" href="#analyser-le-reseau-et-filtrer-le-trafic-avec-un-pare-feu" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">host</span> <span class="pre">www.google.com</span></code></dt>
+<dd>renvoie l’adresse ip du site</dd>
+<dt>pour voir les associations (~DNS) locales :</dt>
+<dd>-&gt; /etc/hosts</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">whois</span> <span class="pre">google.com</span></code></dt>
+<dd>obtenir des infos sur un site (installer d’abord le package whois)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ifconfig</span></code></dt>
+<dd>liste des interfaces réseau
+<code class="docutils literal notranslate"><span class="pre">lo</span></code> : c’est la boucle locale. Tout le monde devrait avoir cette interface. Elle correspond à une connexion à… vous-mêmes. C’est pour cela qu’on l’appelle la boucle locale : tout ce qui est envoyé par là vous revient automatiquement. Cela peut paraître inutile, mais on a parfois besoin de se connecter à soi-même pour des raisons pratiques.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ifconfig</span> <span class="pre">eth0</span> <span class="pre">down/up</span></code></dt>
+<dd>activer/désactiver une interface</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">netstat</span></code></dt>
+<dd>statistiques sur le réseau</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">netstat</span> <span class="pre">-i</span></code></dt>
+<dd>statistiques des interfaces réseau</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">netstat</span> <span class="pre">-uta</span></code></dt>
+<dd><p class="first">lister toutes les connexions ouvertes</p>
+<p>Options :</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-u</span></code> : afficher les connexions UDP ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">-t</span></code> : afficher les connexions TCP ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">-a</span></code> : afficher toutes les connexions quel que soit leur état.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-n</span></code> : affiche les n° de port plutôt que leur description</li>
+<li><code class="docutils literal notranslate"><span class="pre">-l</span></code> : affiche les connexions en état d’écoute</li>
+</ul>
+<p>Statuts :</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">ESTABLISHED</span></code> : la connexion a été établie avec l’ordinateur distant</li>
+<li><code class="docutils literal notranslate"><span class="pre">TIME_WAIT</span></code> : la connexion attend le traitement de tous les paquets encore sur le réseau avant de commencer la fermeture</li>
+<li><code class="docutils literal notranslate"><span class="pre">CLOSE_WAIT</span></code> : le serveur distant a arrêté la connexion de lui-même (peut-être parce que vous êtes restés inactifs trop longtemps ?)</li>
+<li><code class="docutils literal notranslate"><span class="pre">CLOSED</span></code> : la connexion n’est pas utilisée</li>
+<li><code class="docutils literal notranslate"><span class="pre">CLOSING</span></code> : la fermeture de la connexion est entamée mais toutes les données n’ont pas encore été envoyées</li>
+<li><code class="docutils literal notranslate"><span class="pre">LISTEN</span></code> : à l’écoute des connexions entrantes. Les connexions à l’état LISTEN ne sont pas utilisées actuellement mais qu’elles « écoutent » le réseau au cas où quelqu’un veuille se connecter à votre ordinateur</li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">netstat</span> <span class="pre">-s</span></code></dt>
+<dd>statistiques résumées</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-L</span></code></dt>
+<dd><p class="first">afficher les règles</p>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">Chain</span> <span class="pre">INPUT</span></code> : correspond aux règles manipulant le trafic entrant ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">Chain</span> <span class="pre">FORWARD</span></code> : correspond aux règles manipulant la redirection du trafic ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">Chain</span> <span class="pre">OUTPUT</span></code> : correspond aux règles manipulant le trafic sortant.</li>
+<li><code class="docutils literal notranslate"><span class="pre">target</span></code> : ce que fait la règle. Ici c’est ACCEPT, c’est-à-dire que cette ligne autorise un port et / ou une IP</li>
+<li><code class="docutils literal notranslate"><span class="pre">prot</span></code> : le protocole utilisé (tcp, udp, icmp). Je rappelle que TCP est celui auquel on a le plus recourt. ICMP permet à votre ordinateur de répondre aux requêtes de type « ping »</li>
+<li><code class="docutils literal notranslate"><span class="pre">source</span></code> : l’IP de source. Pour INPUT, la source est l’ordinateur distant qui se connecte à vous</li>
+<li><code class="docutils literal notranslate"><span class="pre">destination</span></code> : l’IP de destination. Pour OUTPUT, c’est l’ordinateur auquel on se connecte</li>
+<li>la dernière colonne : elle indique le port après les deux points « : ». Ce port est affiché en toutes lettres, mais avec -n vous pouvez obtenir le numéro correspondant</li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-F</span></code></dt>
+<dd>réinitialise les règles du pare-feu (attention : efface tout le travail fait auparavant sur le pare-feu…)</dd>
+</dl>
+<p>Ajouter et supprimer des règles :</p>
+<blockquote>
+<div><p>Voici les principales commandes à connaître :</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-A</span> <span class="pre">chain</span></code> : ajoute une règle en fin de liste pour la chain indiquée (INPUT ou OUTPUT, par exemple).</li>
+<li><code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">chain</span> <span class="pre">rulenum</span></code> : supprime la règle n° rulenum pour la chain indiquée.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">chain</span> <span class="pre">rulenum</span></code> : insère une règle au milieu de la liste à la position indiquée par rulenum. Si vous n’indiquez pas de position rulenum, la règle sera insérée en premier, tout en haut dans la liste.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">chain</span> <span class="pre">rulenum</span></code> : remplace la règle n° rulenum dans la chain indiquée.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-L</span></code> : liste les règles (nous l’avons déjà vu).</li>
+<li><code class="docutils literal notranslate"><span class="pre">-F</span> <span class="pre">chain</span></code> : vide toutes les règles de la chain indiquée. Cela revient à supprimer toutes les règles une par une pour cette chain.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-P</span> <span class="pre">chain</span> <span class="pre">regle</span></code> : modifie la règle par défaut pour la chain. Cela permet de dire, par exemple, que par défaut tous les ports sont fermés, sauf ceux que l’on a indiqués dans les règles.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">(--match)</span></code> : Specifies  a  match  to use, that is, an extension module that tests for a specific property. The set of matches make up the condition under which a target is invoked. Matches are evaluated first to last as specified on the command line and work in short-circuit fashion,  i.e.  if one extension yields false, evaluation will stop.</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-A</span> <span class="pre">(chain)</span> <span class="pre">-p</span> <span class="pre">(protocole)</span> <span class="pre">--dport</span> <span class="pre">(port)</span> <span class="pre">-j</span> <span class="pre">(décision)</span></code></dt>
+<dd>ajouter une règle. Remplacez chain par la section qui vous intéresse (<code class="docutils literal notranslate"><span class="pre">INPUT</span></code> ou <code class="docutils literal notranslate"><span class="pre">OUTPUT</span></code>), protocole par le nom du protocole à filtrer (TCP, UDP, ICMP…) et enfin décision par la décision à prendre : <code class="docutils literal notranslate"><span class="pre">ACCEPT</span></code> pour accepter le paquet, <code class="docutils literal notranslate"><span class="pre">REJECT</span></code> pour le rejeter ou bien <code class="docutils literal notranslate"><span class="pre">DROP</span></code> pour l’ignorer complètement.</dd>
+</dl>
+<p>exemple : <code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-A</span> <span class="pre">INPUT</span> <span class="pre">-p</span> <span class="pre">tcp</span> <span class="pre">--dport</span> <span class="pre">ssh</span> <span class="pre">-j</span> <span class="pre">ACCEPT</span></code></p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-A</span> <span class="pre">INPUT</span> <span class="pre">-p</span> <span class="pre">icmp</span> <span class="pre">-j</span> <span class="pre">ACCEPT</span></code></dt>
+<dd>autoriser les pings (protocole ICMP)</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-A</span> <span class="pre">INPUT</span> <span class="pre">-i</span> <span class="pre">lo</span> <span class="pre">-j</span> <span class="pre">ACCEPT</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-A</span> <span class="pre">INPUT</span> <span class="pre">-m</span> <span class="pre">state</span> <span class="pre">--state</span> <span class="pre">ESTABLISHED,RELATED</span> <span class="pre">-j</span> <span class="pre">ACCEPT</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li>La première règle autorise tout le trafic sur l’interface de loopback locale grâce à -i lo. Il n’y a pas de risque à autoriser votre ordinateur à communiquer avec lui-même, d’autant plus qu’il en a parfois besoin !</li>
+<li>La seconde règle autorise toutes les connexions qui sont déjà à l’état ESTABLISHED ou RELATED. En clair, elle autorise toutes les connexions qui ont été demandées par votre PC. Là encore, cela permet d’assouplir le pare-feu et de le rendre fonctionnel pour une utilisation quotidienne.</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-P</span> <span class="pre">INPUT</span> <span class="pre">DROP</span></code></dt>
+<dd>on refuse tout ce qui n’est pas aurtorisé (faire de même pour OUTPUT)</dd>
+</dl>
+<p>ATTENTION : ces règles seront perdues au redémarrage ! pour que ça ne soit pas le cas -&gt; ajouter un script shell</p>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Linux/18-pare-feu.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,173 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Les utilisateurs et les droits &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="les-utilisateurs-et-les-droits">
+<h1>Les utilisateurs et les droits<a class="headerlink" href="#les-utilisateurs-et-les-droits" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">adduser</span> <span class="pre">userName</span></code></dt>
+<dd>ajouter un utilisateur userName</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">deluser</span> <span class="pre">userName</span></code></dt>
+<dd>supprimer un utilisateur userName</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">deluser</span> <span class="pre">--remove-home</span> <span class="pre">userName</span></code></dt>
+<dd>supprime aussi son répertoire personnel</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pswd</span> <span class="pre">userName</span></code></dt>
+<dd>changer le mot de passe de userName</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">addgroup</span> <span class="pre">groupName</span></code></dt>
+<dd>crée un groupe d’utilisateurs</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">usermod</span> <span class="pre">-l</span> <span class="pre">userName</span></code></dt>
+<dd>modifier le nom de l’utilisateur</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">usermod</span> <span class="pre">-g</span> <span class="pre">groupName</span> <span class="pre">userName</span></code></dt>
+<dd>modifier le groupe d’un utilisateur (remplace les précédents groupes)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">usermod</span> <span class="pre">-G</span> <span class="pre">amis,paris,collegues</span> <span class="pre">patrick</span></code></dt>
+<dd>ajouter l’utilisateur à plusieurs groupes (G majuscule) (remplace les précédents groupes)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">usermod</span> <span class="pre">-aG</span> <span class="pre">amis,paris,collegues</span> <span class="pre">patrick</span></code></dt>
+<dd>ajoute l’utilisateur aux groupes en gardant ses groupes précédents</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">delgroup</span> <span class="pre">groupName</span></code></dt>
+<dd>supprime un groupe</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">chown</span> <span class="pre">userName</span> <span class="pre">fichier</span></code></dt>
+<dd>rend patrick propriétaire de rapport.txt</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">chgrp</span> <span class="pre">groupName</span> <span class="pre">fichier</span></code></dt>
+<dd>rend le groupe groupName propriétaire du fichier</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">chown</span> <span class="pre">userName:groupName</span> <span class="pre">fichier</span></code></dt>
+<dd>Cela affectera le fichier à l’utilisateur userName et au groupe groupName.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">chown</span> <span class="pre">-R</span> <span class="pre">userName:userName</span> <span class="pre">/dossier/</span></code></dt>
+<dd>modifie tous les sous-dossiers et fichiers contenus dans un dossier pour y affecter un nouvel utilisateur (et un nouveau groupe si on utilise la technique du deux points)</dd>
+<dt>ex <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">drwxr-xr-x</span> <span class="pre">2</span> <span class="pre">mateo21</span> <span class="pre">mateo21</span> <span class="pre">4096</span> <span class="pre">2007-11-13</span> <span class="pre">21:53</span> <span class="pre">Desktop</span></code></span></dt>
+<dd><ul class="first simple">
+<li><code class="docutils literal notranslate"><span class="pre">d</span></code> (Directory) : indique si l’élément est un dossier ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">l</span></code> (Link) : indique si l’élément est un lien (raccourci) ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">r</span></code> (Read) : indique si on peut lire l’élément ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">w</span></code> (Write) : indique si on peut modifier l’élément ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">x</span></code> (eXecute) : si c’est un fichier, « x » indique qu’on peut l’exécuter. Ce n’est utile que pour les fichiers exécutables (programmes et scripts).</li>
+</ul>
+<p>Si c’est un dossier, « x » indique qu’on peut le « traverser », c’est-à-dire qu’on peut voir les sous-dossiers qu’il contient si on a le droit de lecture dessus.</p>
+<ul class="last simple">
+<li>le premier triplet rwx indique les droits que possède le propriétaire du fichier sur ce dernier ;</li>
+<li>le second triplet rwx indique les droits que possèdent les autres membres du groupe sur ce fichier ;</li>
+<li>enfin, le dernier triplet rwx indique les droits que possèdent tous les autres utilisateurs de la machine sur le fichier.</li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">chmod</span></code></dt>
+<dd><dl class="first docutils">
+<dt>modifie les droits -&gt; utiliser des numéros :</dt>
+<dd><ul class="first simple">
+<li><code class="docutils literal notranslate"><span class="pre">r</span></code> = 4</li>
+<li><code class="docutils literal notranslate"><span class="pre">w</span></code> = 2</li>
+<li><code class="docutils literal notranslate"><span class="pre">x</span></code> = 1</li>
+</ul>
+<p class="last">donc :</p>
+</dd>
+</dl>
+<ul class="last simple">
+<li><code class="docutils literal notranslate"><span class="pre">---</span></code> = 0+0+0 = 0</li>
+<li><code class="docutils literal notranslate"><span class="pre">r--</span></code> = 4+0+0 = 4</li>
+<li><code class="docutils literal notranslate"><span class="pre">-w-</span></code> = 0+2+0 = 2</li>
+<li><code class="docutils literal notranslate"><span class="pre">--x</span></code> = 0+0+1 = 1</li>
+<li><code class="docutils literal notranslate"><span class="pre">rw-</span></code> = 4+2+0 = 6</li>
+<li><code class="docutils literal notranslate"><span class="pre">-wx</span></code> = 0+2+1 = 3</li>
+<li><code class="docutils literal notranslate"><span class="pre">r-x</span></code> = 4+0+1 = 5</li>
+<li><code class="docutils literal notranslate"><span class="pre">rwx</span></code> = 4+2+1 = 7</li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">600</span> <span class="pre">rapport.txt</span></code></dt>
+<dd><code class="docutils literal notranslate"><span class="pre">-rw-------</span> <span class="pre">1</span> <span class="pre">mateo21</span> <span class="pre">mateo21</span> <span class="pre">0</span> <span class="pre">2007-11-15</span> <span class="pre">23:14</span> <span class="pre">rapport.txt</span></code></dd>
+</dl>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Linux/09-utilisateurs.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

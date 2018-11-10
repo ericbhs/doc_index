@@ -1,0 +1,72 @@
+======================
+Manipuler les fichiers
+======================
+
+``tree --du -h``
+    returns a tree-like representation of the current folder and its subfilders/files (could be a huge dump)
+    
+    Note that tree might have to be installed first with ``sudo apt-get install tree``
+
+``less -N fichier.txt``
+    affiche le contenu d'un fichier avec numéro de lignes
+
+``touch fichier.txt``
+    crée un fichier vide
+
+``head/tail``
+    affiche le début/fin d'un fichier
+
+``tail -f fichier``
+    permet de voir l'évolution de la fin d'un fichier (par ex : var/log/syslog)
+
+``.``
+    le dossier où je me trouve
+
+``cp -R dossierSource dossierDest``
+    Avec l'option ``-R`` (un « R » majuscule !), vous pouvez copier un dossier, ainsi que tous les sous-dossiers et fichiers qu'il contient !
+
+``mv``
+    déplacer
+
+``rm fichier``
+    suprimer
+
+``rm -i fichier``
+    supprimer avec confirmation
+
+``rm -f fichier``
+    forcer la suppression quoi qu'il arrive
+
+``rm -v fichier``
+    supprimer avec verbose
+
+``rm - r dossier/``
+    supprimer un dossier et son contenu
+
+``rm -rf *``
+    supprimer tous les fichiers du dossier courant
+
+    ATTENTION : NE SURTOUT PAS CONFONDRE AVEC ``rm -rf /*`` qui supprime tout, partout et flingue tout le système
+
+``ln fichier1 fichier2``
+    crée un lien physique entre fichier1 et fichier2 (même "inode", pointent vers le même contenu)
+
+``ln -s fichier1 fichier2``
+    crée un lien symbolique entre fichier1 et fichier2 (~raccourci Windows)
+    
+``mkdir nom_du_dossier``
+    créer un dossier
+    
+``mkdir -p dossier/{dossier1,dossier2,dossier3}``
+    crée l'arborescence suivante :
+    
+    .. code-block:: bash
+    
+        ├── [eric     4.0K]  dossier
+        │   ├── [eric     4.0K]  dossier1
+        │   ├── [eric     4.0K]  dossier2
+        │   └── [eric     4.0K]  dossier3
+        
+    ``-p``, ``--parents`` : no error if existing, make parent directories as needed
+
+    

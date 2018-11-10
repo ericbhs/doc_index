@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>System Folders in Linux &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="system-folders-in-linux">
+<h1>System Folders in Linux<a class="headerlink" href="#system-folders-in-linux" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">bin</span></code></dt>
+<dd>contient des programmes (exécutables) susceptibles d’être utilisés par tous les utilisateurs de la machine.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">boot</span></code></dt>
+<dd>fichiers permettant le démarrage de Linux.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dev</span></code></dt>
+<dd>fichiers contenant les périphériques. En fait – on en reparlera plus tard – ce dossier contient des sous-dossiers qui « représentent » chacun un périphérique. On y retrouve ainsi par exemple le fichier qui représente le lecteur CD.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">etc</span></code></dt>
+<dd>fichiers de configuration.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">home</span></code></dt>
+<dd><p class="first">répertoires personnels des utilisateurs. On en a déjà parlé un peu avant : c’est dans ce dossier que vous placerez vos fichiers personnels, à la manière du dossierMes documentsde Windows.</p>
+<p class="last">Chaque utilisateur de l’ordinateur possède son dossier personnel. Par exemple, dans mon cas mon dossier personnel se trouve dans/home/mateo21/. S’il y avait un autre utilisateur (appelons-le Patrick) sur mon ordinateur, il aurait eu droit lui aussi à son propre dossier :/home/patrick/.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">lib</span></code></dt>
+<dd>dossier contenant les bibliothèques partagées (généralement des fichiers.so) utilisées par les programmes. C’est en fait là qu’on trouve l’équivalent des.dllde Windows.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">media</span></code></dt>
+<dd>lorsqu’un périphérique amovible (comme une carte mémoire SD ou une clé USB) est inséré dans votre ordinateur, Linux vous permet d’y accéder à partir d’un sous-dossier demedia. On parle de montage.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mnt</span></code></dt>
+<dd>c’est un peu pareil quemedia, mais pour un usage plus temporaire.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">opt</span></code></dt>
+<dd>répertoire utilisé pour les add-ons de programmes.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">proc</span></code></dt>
+<dd>contient des informations système.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">root</span></code></dt>
+<dd>c’est le dossier personnel de l’utilisateur « root ». Normalement, les dossiers personnels sont placés danshome, mais celui de « root » fait exception. En effet, comme je vous l’ai dit dans le chapitre précédent, « root » est le superutilisateur, le « chef » de la machine en quelque sorte. Il a droit à un espace spécial.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sbin</span></code></dt>
+<dd>contient des programmes système importants.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tmp</span></code></dt>
+<dd>dossier temporaire utilisé par les programmes pour stocker des fichiers.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">usr</span></code></dt>
+<dd>c’est un des plus gros dossiers, dans lequel vont s’installer la plupart des programmes demandés par l’utilisateur.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">var</span></code></dt>
+<dd>ce dossier contient des données « variables », souvent des logs (traces écrites de ce qui s’est passé récemment sur l’ordinateur).</dd>
+</dl>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Linux/22-folders.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

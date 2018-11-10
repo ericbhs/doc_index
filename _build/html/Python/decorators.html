@@ -1,0 +1,355 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Decorators &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="decorators">
+<h1>Decorators<a class="headerlink" href="#decorators" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#simple-decorator" id="id1">Simple decorator</a></li>
+<li><a class="reference internal" href="#decorator-with-parameters" id="id2">Decorator with parameters</a></li>
+<li><a class="reference internal" href="#decorator-on-functions-with-parameters" id="id3">Decorator on functions with parameters</a></li>
+<li><a class="reference internal" href="#decorators-applied-to-classes-definitions" id="id4">Decorators applied to classes definitions</a></li>
+<li><a class="reference internal" href="#chaining-decorators" id="id5">Chaining Decorators</a></li>
+<li><a class="reference internal" href="#example-of-decorator-to-check-argument-types" id="id6">Example of decorator to check argument types</a></li>
+<li><a class="reference internal" href="#decorators-for-getters-setters-deleters" id="id7">Decorators for getters / setters / deleters</a></li>
+</ul>
+</div>
+<p>Decorator allow to modify the behaviour of a function.</p>
+<div class="section" id="simple-decorator">
+<h2><a class="toc-backref" href="#id1">Simple decorator</a><a class="headerlink" href="#simple-decorator" title="Permalink to this headline">¶</a></h2>
+<p>The “prototype” of a decorator is :</p>
+<blockquote>
+<div><ul class="simple">
+<li>Parameter : the function to be modified</li>
+<li>Return : another function</li>
+</ul>
+</div></blockquote>
+<p>The returned might be the same function as the function to be modified.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_decorator</span><span class="p">(</span><span class="n">fonction</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This is our decorator : it displays a message before calling the</span>
+<span class="sd">    decorated function&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">modified_function</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;This is the function returned by the decorator.</span>
+
+<span class="sd">        It is actually a modified version of the original function,</span>
+<span class="sd">        which displays a message before calling the original function.&quot;&quot;&quot;</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Let&#39;s call {0}...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fonction</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">fonction</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">modified_function</span>
+
+<span class="nd">@my_decorator</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello !&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@decorator</span>
+<span class="k">def</span> <span class="nf">fonction</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>…is the same as this :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fonction</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="n">fonction</span> <span class="o">=</span> <span class="n">decorator</span><span class="p">(</span><span class="n">fonction</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Using the decorator replaces the function by the function modified by the decorator function.</p>
+</div>
+<div class="section" id="decorator-with-parameters">
+<h2><a class="toc-backref" href="#id2">Decorator with parameters</a><a class="headerlink" href="#decorator-with-parameters" title="Permalink to this headline">¶</a></h2>
+<p>This :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@decorator</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fonction</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>…is the same as this :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fonction</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="n">fonction</span> <span class="o">=</span> <span class="n">decorator</span><span class="p">(</span><span class="n">parameter</span><span class="p">)(</span><span class="n">fonction</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">decorator(parameter)</span></code> is a function, which is applied to <code class="docutils literal notranslate"><span class="pre">function</span></code>.</p>
+<p>Example :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">time_control</span><span class="p">(</span><span class="n">nb_secs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Controls the time t taken by a function to execute.</span>
+<span class="sd">    if t &gt; nb_secs =&gt; display an alert&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">function_to_be_executed</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is our decorator.</span>
+<span class="sd">        It is called during the definition of the function</span>
+<span class="sd">        to be decorated&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">modified_function</span><span class="p">():</span>
+            <span class="sd">&quot;&quot;&quot;Function returned by the decorator.</span>
+<span class="sd">            Calculates the function execution time if the user</span>
+<span class="sd">            took more than nb_secs to press enter.&quot;&quot;&quot;</span>
+
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="c1"># Before executing the function</span>
+            <span class="n">returned_value</span> <span class="o">=</span> <span class="n">function_to_be_executed</span><span class="p">()</span> <span class="c1"># Run the function</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">tps_execution</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+            <span class="k">if</span> <span class="n">tps_execution</span> <span class="o">&gt;=</span> <span class="n">nb_secs</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Function {0} took {1} to run.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
+                        <span class="n">function_to_be_executed</span><span class="p">,</span> <span class="n">tps_execution</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">returned_value</span>
+        <span class="k">return</span> <span class="n">modified_function</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+</pre></div>
+</div>
+<p>So we have :</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">time_control(nb_sec)</span></code></dt>
+<dd><dl class="first last docutils">
+<dt>returns <code class="docutils literal notranslate"><span class="pre">decorator(function_to_be_executed)</span></code></dt>
+<dd>returns <code class="docutils literal notranslate"><span class="pre">modified_function()</span></code></dd>
+</dl>
+</dd>
+</dl>
+<p>This could be used like that :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@controler_temps</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">wait</span><span class="p">():</span>
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Press enter...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Result :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wait</span><span class="p">()</span> <span class="c1"># Pressing enter right now</span>
+<span class="go">Press enter...</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wait</span><span class="p">()</span> <span class="c1"># Waiting more than 4s to press enter</span>
+<span class="go">Press enter...</span>
+<span class="go">Function, &lt;function wait at 0x00BA5810&gt; took 4.14100003242 to run</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="decorator-on-functions-with-parameters">
+<h2><a class="toc-backref" href="#id3">Decorator on functions with parameters</a><a class="headerlink" href="#decorator-on-functions-with-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Taking the previous example, we only have to apply the synthax for functions that take multiple arguments :</p>
+<ul class="simple">
+<li>unnamed parameters preceded with <code class="docutils literal notranslate"><span class="pre">*</span></code></li>
+<li>named parameters preceded with <code class="docutils literal notranslate"><span class="pre">**</span></code></li>
+</ul>
+<p>That difference is applied to <code class="docutils literal notranslate"><span class="pre">modified_function</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">time_control</span><span class="p">(</span><span class="n">nb_secs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Controls the time t taken by a function to execute.</span>
+<span class="sd">    if t &gt; nb_secs =&gt; display an alert&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">function_to_be_executed</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is our decorator.</span>
+<span class="sd">        It is called during the definition of the function</span>
+<span class="sd">        to be decorated&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">modified_function</span><span class="p">(</span><span class="o">*</span><span class="n">unnamed_parameters</span><span class="p">,</span> <span class="o">**</span><span class="n">named_parameters</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;Function returned by the decorator.</span>
+<span class="sd">            Calculates the function execution time if the user</span>
+<span class="sd">            took more than nb_secs to press enter.&quot;&quot;&quot;</span>
+
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="c1"># Before executing the function</span>
+            <span class="c1"># Run the function</span>
+            <span class="n">returned_value</span> <span class="o">=</span> <span class="n">function_to_be_executed</span><span class="p">(</span><span class="o">*</span><span class="n">unnamed_parameters</span><span class="p">,</span>
+                                                        <span class="o">**</span><span class="n">named_parameters</span><span class="p">)</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">tps_execution</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+            <span class="k">if</span> <span class="n">tps_execution</span> <span class="o">&gt;=</span> <span class="n">nb_secs</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Function {0} took {1} to run.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
+                        <span class="n">function_to_be_executed</span><span class="p">,</span> <span class="n">tps_execution</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">returned_value</span>
+        <span class="k">return</span> <span class="n">modified_function</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="decorators-applied-to-classes-definitions">
+<h2><a class="toc-backref" href="#id4">Decorators applied to classes definitions</a><a class="headerlink" href="#decorators-applied-to-classes-definitions" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">decorateur</span><span class="p">(</span><span class="n">classe</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Définition de la classe {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">classe</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">classe</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@decorateur</span>
+<span class="gp">... </span><span class="k">class</span> <span class="nc">Test</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+<span class="gp">...</span>
+<span class="go">Définition de la classe &lt;class &#39;__main__.Test&#39;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="chaining-decorators">
+<h2><a class="toc-backref" href="#id5">Chaining Decorators</a><a class="headerlink" href="#chaining-decorators" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@decorateur1</span>
+<span class="nd">@decorateur2</span>
+<span class="k">def</span> <span class="nf">fonction</span><span class="p">():</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-of-decorator-to-check-argument-types">
+<h2><a class="toc-backref" href="#id6">Example of decorator to check argument types</a><a class="headerlink" href="#example-of-decorator-to-check-argument-types" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">controler_types</span><span class="p">(</span><span class="o">*</span><span class="n">a_args</span><span class="p">,</span> <span class="o">**</span><span class="n">a_kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;On attend en paramètres du décorateur les types souhaités. On</span>
+<span class="sd">    accepte une liste de paramètres indéterminés, étant donné que notre</span>
+<span class="sd">    fonction définie pourra être appelée avec un nombre variable de</span>
+<span class="sd">    paramètres et que chacun doit être contrôlé&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">decorateur</span><span class="p">(</span><span class="n">fonction_a_executer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Notre décorateur. Il doit renvoyer fonction_modifiee&quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">fonction_modifiee</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;Notre fonction modifiée. Elle se charge de contrôler</span>
+<span class="sd">            les types qu&#39;on lui passe en paramètres&quot;&quot;&quot;</span>
+
+            <span class="c1"># La liste des paramètres attendus (a_args) doit être de même</span>
+            <span class="c1"># Longueur que celle reçue (args)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_args</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;le nombre d&#39;arguments attendu n&#39;est &quot;</span> \
+                        <span class="s2">&quot;pas égal au nombre reçu&quot;</span><span class="p">)</span>
+            <span class="c1"># On parcourt la liste des arguments reçus et non nommés</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">arg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">a_args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;l&#39;argument {0} n&#39;est pas du type &quot;</span> \
+                            <span class="s2">&quot;{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">a_args</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+            <span class="c1"># On parcourt la liste des paramètres reçus et nommés</span>
+            <span class="k">for</span> <span class="n">cle</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">cle</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">a_kwargs</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;l&#39;argument {0} n&#39;a aucun type &quot;</span> \
+                            <span class="s2">&quot;précisé&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">cle</span><span class="p">)))</span>
+                <span class="k">if</span> <span class="n">a_kwargs</span><span class="p">[</span><span class="n">cle</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="n">cle</span><span class="p">]):</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;l&#39;argument {0} n&#39;est pas de type&quot;</span> \
+                            <span class="s2">&quot;{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">cle</span><span class="p">),</span> <span class="n">a_kwargs</span><span class="p">[</span><span class="n">cle</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="n">fonction_a_executer</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fonction_modifiee</span>
+    <span class="k">return</span> <span class="n">decorateur</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="decorators-for-getters-setters-deleters">
+<h2><a class="toc-backref" href="#id7">Decorators for getters / setters / deleters</a><a class="headerlink" href="#decorators-for-getters-setters-deleters" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;I&#39;m the &#39;x&#39; property.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="nd">@x.setter</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@x.deleter</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> decorator turns the <code class="docutils literal notranslate"><span class="pre">x()</span></code> method into a “getter” for a read-only attribute with the same name, and it sets the docstring for voltage to “I’m the ‘x’ property.”</p>
+<p>Once a roperty object has been created with <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code>, we can redefine its <code class="docutils literal notranslate"><span class="pre">getter</span></code>, <code class="docutils literal notranslate"><span class="pre">setter</span></code> and <code class="docutils literal notranslate"><span class="pre">deleter</span></code> methods for accessors to the parameter.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Python/decorators.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

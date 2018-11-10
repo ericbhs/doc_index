@@ -1,0 +1,154 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Exécuter un programme à une heure différée &#8212; Eric Docs Index  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="executer-un-programme-a-une-heure-differee">
+<h1>Exécuter un programme à une heure différée<a class="headerlink" href="#executer-un-programme-a-une-heure-differee" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">date</span></code></dt>
+<dd>afficher / régler l’heure</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">at</span> <span class="pre">HH:MM</span></code></dt>
+<dd>donne la possibilité de démarrer un programme à HH:MM. Un promppt aparait pour demander lequel.</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">at</span> <span class="pre">HH:MM</span> <span class="pre">tomorrow</span></code></p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">at</span> <span class="pre">HH:MM</span> <span class="pre">11/15/10</span></code></dt>
+<dd>attention date au format américain</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">at</span> <span class="pre">now</span> <span class="pre">+5</span> <span class="pre">minutes</span></code></p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">atq</span></code></dt>
+<dd>afficher les jobs en attente -&gt; donne un n°</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">atrm</span> <span class="pre">x</span></code></dt>
+<dd>supprimer un job en attente dont le numéro est x</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sleep</span> <span class="pre">x</span></code></dt>
+<dd>attend x secondes (minute : xm, heure : xh, jour : xd)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;export</span> <span class="pre">EDITOR=nano&quot;</span> <span class="pre">&gt;&gt;</span>&#160; <span class="pre">~/.bashrc</span></code></dt>
+<dd>faire de Nano l’éditeur par défaut</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">crontab</span> <span class="pre">-e</span></code></dt>
+<dd>modifier la crontab</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">crontab</span> <span class="pre">-l</span></code></dt>
+<dd>afficher la crontab</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">crontab</span> <span class="pre">-r</span></code></dt>
+<dd>supprimer la crontab (immédiate et sans confirmation)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">m</span>&#160;&#160;&#160;&#160; <span class="pre">h</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">dom</span>&#160;&#160;&#160;&#160; <span class="pre">mon</span>&#160;&#160;&#160;&#160; <span class="pre">dow</span>&#160;&#160;&#160;&#160; <span class="pre">command</span></code></dt>
+<dd><ul class="first simple">
+<li><code class="docutils literal notranslate"><span class="pre">m</span></code> : minutes (0 - 59)</li>
+<li><code class="docutils literal notranslate"><span class="pre">h</span></code> : heures (0 - 23)</li>
+<li><code class="docutils literal notranslate"><span class="pre">dom</span></code> (day of month) : jour du mois (1 - 31)</li>
+<li><code class="docutils literal notranslate"><span class="pre">mon</span></code> (month) : mois (1 - 12) ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">dow</span></code> (day of week) : jour de la semaine (0 - 6, 0 étant le dimanche) ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">command</span></code> : c’est la commande à exécuter.</li>
+</ul>
+<p>ex : <code class="docutils literal notranslate"><span class="pre">47</span> <span class="pre">15</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">touch</span> <span class="pre">/home/mateo21/fichier.txt</span></code> -&gt; tous les jours à 15h47</p>
+<dl class="last docutils">
+<dt>Pour chaque champ, on a le droit à différentes notations :</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">5</span></code> (un nombre) : exécuté lorsque le champ prend la valeur 5</li>
+<li><code class="docutils literal notranslate"><span class="pre">*</span></code> : exécuté tout le temps (toutes les valeurs sont bonnes) ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">3,5,10</span></code> : exécuté lorsque le champ prend la valeur 3, 5 ou 10. Ne pas mettre d’espace après la virgule ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">3-7</span></code> : exécuté pour les valeurs 3 à 7 ;</li>
+<li><code class="docutils literal notranslate"><span class="pre">*/3</span></code> : exécuté tous les multiples de 3 (par exemple à 0 h, 3 h, 6 h, 9 h…).</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Eric Docs Index</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Eric Bohnes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Linux/07-differe.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
