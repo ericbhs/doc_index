@@ -22,6 +22,8 @@ Welcome to Eric Docs Index's documentation!
 
 `Sphinx <http://sphinx-cheat-sheet.readthedocs.io/>`_
 
+`LoRa <https://lora.readthedocs.io/>`_
+
 Indices and tables
 ==================
 
