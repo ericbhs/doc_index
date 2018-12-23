@@ -24,6 +24,8 @@ Welcome to Eric Docs Index's documentation!
 
 `LoRa <https://lora.readthedocs.io/>`_
 
+`C <https://c-tips-and-tricks.readthedocs.io/>`_
+
 Indices and tables
 ==================
 
