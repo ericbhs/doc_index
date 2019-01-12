@@ -10,6 +10,8 @@ Welcome to Eric Docs Index's documentation!
    :maxdepth: 2
    :caption: Contents:
    
+`Android <https://android-doc.readthedocs.io/>`_
+
 `Bluez <http://bluez-cheat-sheet.readthedocs.io/>`_
 
 `Git <http://git-cheat-sheet.readthedocs.io/>`_
